@@ -17,7 +17,7 @@ conda create --name <name_of_virtual_environment> --file requirements.txt
 
 ## Description
 
-An example concentration file is needed to execute these codes. The size of the example file is too big to be push to github so will be shared through other means such as google drive
+An example concentration file is needed to execute these codes. The size of the example file is too big to be pushed to github so will be shared through other means such as google drive
 
 ***spatial_aggregation.py***:\
 Aggregates the hyperlocal concentration to census blocks
