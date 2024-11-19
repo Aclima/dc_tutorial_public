@@ -107,13 +107,13 @@ input_data_gpd = gpd.GeoDataFrame(input_data,
 joined_data_gpd = gpd.sjoin(left_df=region_hexagons_gdf, right_df=input_data_gpd, how='left')
 # calculate hexagon average concentrations
 polygon_conc = joined_data_gpd[['hexagons', 'geometry', 'avg_value']]
-polygon_average = polygon_conc.dissolve(by='hexagons', aggfunc='mean')
+hexagon_average = polygon_conc.dissolve(by='hexagons', aggfunc='mean')
 # drop the polygons without data
-polygon_average = polygon_average.dropna(subset=['avg_value'])
+hexagon_average = hexagon_average.dropna(subset=['avg_value'])
 ## Saving data
 # save spatially aggregated file to a shapefile
-polygon_average.to_file(os.path.join(output_dir, f"spatial_aggregate_example_hexagon_{pollutant}_{target_begin_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}_{target_end_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}.shp"))
+hexagon_average.to_file(os.path.join(output_dir, f"spatial_aggregate_example_hexagon_{pollutant}_{target_begin_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}_{target_end_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}.shp"))
 # save spatially aggregated file to a geojson file
-polygon_average.to_file(os.path.join(output_dir, f"spatial_aggregate_example_hexagon_{pollutant}_{target_begin_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}_{target_end_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}.geojson"), driver='GeoJSON')
+hexagon_average.to_file(os.path.join(output_dir, f"spatial_aggregate_example_hexagon_{pollutant}_{target_begin_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}_{target_end_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}.geojson"), driver='GeoJSON')
 # save spatially aggregated file to a csv
-polygon_average.to_csv(os.path.join(output_dir, f"spatial_aggregate_example_hexagon_{pollutant}_{target_begin_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}_{target_end_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}.csv"))
+hexagon_average.to_csv(os.path.join(output_dir, f"spatial_aggregate_example_hexagon_{pollutant}_{target_begin_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}_{target_end_datetime_obj.strftime('%Y_%m_%d_%H_%M_%S')}.csv"))
