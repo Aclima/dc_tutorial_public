@@ -1,3 +1,5 @@
+name: dc_project
+
 dependencies:
   - python=3.12.2
   - pip=24.3.1
